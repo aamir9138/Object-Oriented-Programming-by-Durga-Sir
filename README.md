@@ -332,3 +332,31 @@ public void m1();             // not valid because not abstract still we don't h
 public abstract void m1();    // valid
 public void m1(){}            // valid
 ````
+## abstract class
+
+abstract class means incomplete class. if a class start with `abstract` modifier are `abstract class`. some important points about it are below.
+
+1. if a class contain atleast one `abstract method` the class must be declared as `abstract` otherwise compiler error
+2. even though if we don't have `abstract methods` we can declare a class as abstract if the methods declared are dummy or incomplelte.
+3. we cannot create `object` of abstract classes.
+4. in other words we cannot instantiate it. because of the reason that these classes are incomplete.
+
+we cannot instantiate because if we do it and try to access an `abstract method` it will give error because it has no implementation.
+or if we have dummy methods we cannot get anything.
+
+abstract class with abstract method
+````
+abstract public class abstract_class {
+    public abstract int getNoOfWheels();
+}
+````
+abstract class with dummy methods
+````
+abstract public class abstract_class {
+    public void m1(){}
+    public void m2(){}
+    public void m3(){}
+}
+````
+- in future we will see every `Adapter class` is an abstract class
+- also the `httpservlet classes` are abstract classes. which even doesn't contain abstract methods.
