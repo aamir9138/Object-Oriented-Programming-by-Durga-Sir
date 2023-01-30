@@ -294,3 +294,41 @@ the only applicable modifiers for top level classes are `public`,`default means 
 
 - the applicable modifiers for inner classes are 8 `public`,`default means nothing`, `abstract`,`final`, `private`,`protected`,`static` and `strictfp`
 - `private`,`protected`,`static` are only allowed for inner classes.
+
+## Abstract Method
+
+`abstract` modifier is the most important modifier. where we can use `abstract` modifier?
+
+1. with methods possible
+2. with classes possible
+3. with variables `abstract` modifier is not possible.
+
+abstract in general mean partial, not completed something like this.
+
+### important point about Abstract Method
+
+1. `abstract methods` will have only declaration and not implementation.
+2. `abstract methods` has no body or you can say no curly braces.
+3. `abstract methods` ends  with a semicolon `;` and have no implementation
+4. The class containing the `abstract mehod` must also be declared as `abstract` otherwise error
+5. `abstract methods` will be implemented by the `child classes`
+
+we will discuss these points with some examples. The below example is correct and will compile correctly
+````
+public abstract class abstract_method {
+    public abstract int getNoOfWheels();
+    public abstract String getTaste();
+    public abstract double getLoanInterest();
+}
+````
+as we can see in all the 3 cases we don't know the return value that is the reason we declared it as `abstract methods`.
+it means no of wheels, fruit taste and interest loan can be different not a single value. which we will implement in the child classes.
+
+Below we present some scenario and determine if it is a valid syntax or not.
+
+````
+public abstract void m1(){}   // not valid as we have curly braces
+public void m1();             // not valid because not abstract still we don't have implementation we need {}
+public abstract void m1();    // valid
+public void m1(){}            // valid
+````
