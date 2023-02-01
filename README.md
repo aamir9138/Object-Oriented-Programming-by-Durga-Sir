@@ -360,3 +360,58 @@ abstract public class abstract_class {
 ````
 - in future we will see every `Adapter class` is an abstract class
 - also the `httpservlet classes` are abstract classes. which even doesn't contain abstract methods.
+
+## abstract class vs abstract method
+
+let say we have an abstract class
+````
+abstract class Test{
+    public abstract void m1();
+    public abstract void m2();
+}
+````
+to implement these abstract methods we need a child class for example
+````
+public class SubTest extends Test{
+    public void m1(){}
+}
+````
+to make a child class we have to use the `extends` keyword as above. and you observe we have implemented the
+method `m1(){}` in child class `SubTest` but compiler will give error. why because we implement only one method
+from the parent class we have to implement all the methods from parent class in the child class.
+
+so the possible fixes are 2
+
+1. provide implementation for all the abstract methods in the child classes.
+2. if we are going to provide implementation for only one method than declare the child class also `abstract`. because
+it is not complete.
+
+we will provide a real life example here
+````
+abstract class vehicle{
+    public abstract int getNoOfWheels();
+}
+
+class bus extends vehicle{
+    public int getNoOfWheels(){
+        return 6;
+    }
+}
+
+class Auto extends vehicle{
+    public int getNoOfWheels(){
+        return 3;
+    }
+}
+
+public class child_classes {
+    public static void main(String[] args){
+        bus b = new bus();
+        Auto a = new Auto();
+        System.out.println(b.getNoOfWheels());  // 6
+        System.out.println(a.getNoOfWheels());  // 3
+    }
+}
+````
+The question is why are we giving abstract methods in the parent. even without this the code will run. this is because
+if we want to force the user to create classes for which it is necessary.
