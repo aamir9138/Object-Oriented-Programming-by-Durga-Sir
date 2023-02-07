@@ -611,3 +611,30 @@ class SubServiceProvider extends ServiceProvider{
     }
 }
 ````
+## Data Hiding
+
+It means outside person should not access out internal data directly. we have to hide it. example of gmail inbox was giving. without my data validation that is email and password is not possible.
+for this we declare the variable as `private` and then if we need data we use `getMethods`
+
+````
+public class Account{
+    private double balance;
+
+    public double getBalance(){
+        // validation
+        if(validation is correct){
+        return balance
+        }
+    }
+````
+## Abstraction
+
+we are providing the following services. but how these services are implemented is hided this is called `Abstraction`. so hiding of implementation is `Abstraction`. This is done for security reasons.
+`interfaces` are used to implement `Abstraction`.
+
+### importance
+
+1. Security
+2. Enhancement
+3. maintainability will improved
+4. Modularity will improved
