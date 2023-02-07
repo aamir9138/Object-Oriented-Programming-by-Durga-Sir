@@ -655,3 +655,9 @@ Hiding data behind methods is infact `Encapsulation`
 2. Enhancement
 3. maintainability will improved
 4. Modularity will improved
+
+## Tightly Encapsulated Class
+
+a class is `Tightly Encapsulated Class` if and only if all the variables inside it are `private`.
+
+- if parent class in not Tightly encapsulated than no child class is tightly encapsulated.
