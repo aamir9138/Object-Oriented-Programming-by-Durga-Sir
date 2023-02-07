@@ -530,3 +530,15 @@ packs\pack2\B.java:14: error: m1() has protected access in A
           ^
 2 errors
 ````
+
+## Summary of public, protected, default and private modifiers
+
+| Visibility                                    | public | protected                                 | default | private | 
+|-----------------------------------------------|--------|------------------------------------------ | ------- |-------- |
+| within the same class                         |  yes   |  yes                                      |  yes    |  yes    |
+| from child class of same package              |  yes   |  yes                                      |  yes    |  no     |
+| from non-child class of same package          |  yes   |  yes                                      |  yes    |  no     |
+| from child class of different package         |  yes   |  yes [we sholud use child reference only] |  no     |  no     |
+| from non-child class of outside package       |  yes   |  no                                       |  no     |  no     |
+
+`privat < default < protected < public` is the ascending order of restriction.
