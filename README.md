@@ -661,3 +661,48 @@ Hiding data behind methods is infact `Encapsulation`
 a class is `Tightly Encapsulated Class` if and only if all the variables inside it are `private`.
 
 - if parent class in not Tightly encapsulated than no child class is tightly encapsulated.
+
+## Inheritance Introduction
+
+1. inheritance is relationship
+2. for code reuseability
+3. `extends` keyword is used for relationship
+
+This child classes which will be build using `extends` keyword contain all the methods of its parent class by default 
+because it is inherited from it.
+
+parent reference can be used to hold the child object. but we cannot use it to access the child methods
+````
+class P {
+    public void m1(){
+        System.out.println("parent");
+    }
+}
+
+class C extends P{
+    public void m2(){
+        System.out.println("child");
+    }
+}
+
+class Testt {
+    public static void main(String[] args){
+        P p = new P();
+        p.m1();
+//        p.m2(); cannot access child methods
+
+        C c = new C();
+        c.m1();
+        c.m2(); // we can call both parent and child methods
+
+        P p1 = new C();
+        p1.m1();
+//        p1.m2(); parent reference can be used to hold the child object. but we cannot use it to access the child methods
+    }
+}
+
+````
+Parent reference can be used to hold the child Object but child reference cannot be used to hold the parent object.
+````
+C c1 = new P(); // Parent reference can be used to hold the child Object but child reference cannot be used to hold the parent object.
+````
