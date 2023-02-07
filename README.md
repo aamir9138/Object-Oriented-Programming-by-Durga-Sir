@@ -706,3 +706,36 @@ Parent reference can be used to hold the child Object but child reference cannot
 ````
 C c1 = new P(); // Parent reference can be used to hold the child Object but child reference cannot be used to hold the parent object.
 ````
+## Importance of Inheritance
+
+The importance that the classes will get reduced we will not need to write classes again in child classes.
+- which class is the root of all the classes ---> `Object Class`
+- `Object Class` contains the most common methods for all Java classes.
+
+## Types of Inheritance
+
+### Single inheritance
+
+`Class B extends A` it is possible in Java
+
+### multiple inheritance
+
+multiple inheritance is not possible in Java
+
+`Class C extends A,B` is not possible
+
+### multi-level inheritance
+
+this is possible in Java.
+
+`Class A`
+`Class B extends A`
+`Class C extends B`
+
+### hierarchial inheritance
+
+it is supported. it means if from one class many classes inherit separately
+`Class A`
+`Class B extends A`
+`Class C extend A`
+`Class D extends A`
