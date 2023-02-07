@@ -441,3 +441,92 @@ private members are only accessable within the same class.
 
 1. recommended modifiers for data members `variable` is always `private`. 
 2. recommended modifiers for methods is `public`
+
+## Member modifiers as protected
+
+if a member is declared as `protected` it means that it is accessable inside the package plus   the child classes outside of the package.
+
+````
+protected = <default> + kids
+````
+### how we know a child class
+
+the class which is extended from another class is a child class.
+````
+class B extends A
+````
+here B is a child of class A.
+
+````
+package com.protectedmembers;
+
+class A {
+    protected void m1(){
+        System.out.println("A class protected methods");
+    }
+}
+
+class B extends A {
+    public static void main(String [] args){
+        A a = new A();
+        a.m1(); // valid parent reference parent object
+
+        B b = new B();
+        b.m1(); // valid child reference child object
+
+        A a1 = new B();
+        a1.m1(); // valid parent reference child object
+    }
+}
+````
+within the same package we can use any reference either parent reference or child reference.
+first compile `javac -d . protected_members.java`
+then run using `java com.protectedmembers.B`
+
+````
+$ java com.protectedmembers.B
+A class protected methods
+A class protected methods
+A class protected methods
+````
+### important about protected
+
+- if we are accessing the protected members in the same package we can access it either with parent class reference or child class reference no problem.
+- but if we are accessing the protected members in a different package with a child class we can access it only with the `child class reference` not with the `parent class reference`.
+
+````
+package pack1;
+
+public class A {
+    protected void m1(){
+        System.out.println("A class protected methods");
+    }
+}
+````
+````
+package com.pack2;
+import pack1.A
+
+public class B extends A {
+    public static void main(String [] args){
+        A a = new A();
+        a.m1(); // not valid because different package and parent reference
+
+        B b = new B();
+        b.m1(); // valid even different package child class but reference is child class
+
+        A a1 = new B();
+        a1.m1(); // not valid because reference is a parent class
+    }
+}
+````
+````
+$ javac -d . packs/pack2/B.java
+packs\pack2\B.java:8: error: m1() has protected access in A
+        a.m1();
+         ^
+packs\pack2\B.java:14: error: m1() has protected access in A
+        a1.m1();
+          ^
+2 errors
+````
