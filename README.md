@@ -638,3 +638,20 @@ we are providing the following services. but how these services are implemented 
 2. Enhancement
 3. maintainability will improved
 4. Modularity will improved
+
+## Encapsulation
+
+The process of grouping the `data members` and the `methods` together is called `encapsulation`. `class` is an example of `encapsulation`.
+
+`Encapsulation = Data hiding + Abstraction`
+
+- `getter` and `setter` are used for validation.
+
+Hiding data behind methods is infact `Encapsulation`
+
+### importance
+
+1. Security
+2. Enhancement
+3. maintainability will improved
+4. Modularity will improved
