@@ -415,3 +415,29 @@ public class child_classes {
 ````
 The question is why are we giving abstract methods in the parent. even without this the code will run. this is because
 if we want to force the user to create classes for which it is necessary.
+
+## Member Modifiers: public, default and private
+
+member means it may be a `variable` or may be a `method`. member modifiers are 12 but we will discuss only 4 here.
+
+### public modifier
+
+- if a member is declared as `public` we can access it from anywhere inside a package or outside
+- but where ever the public member is declared the enclosed class must also be `public` if class is not public than we cannot access it.
+
+### default modifier
+
+if there is no modifier that member is default.
+- default member are only accessable within the same package. outside the package it is not possible.
+- even though the enclosing class is public but if the member i.e variable or method is default we cannot access it from outside the package
+
+### private members
+
+private members are only accessable within the same class.
+
+- private -- class level
+- default -- package level
+- public -- global level
+
+1. recommended modifiers for data members `variable` is always `private`. 
+2. recommended modifiers for methods is `public`
