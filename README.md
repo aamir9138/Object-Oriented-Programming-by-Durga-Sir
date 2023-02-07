@@ -542,3 +542,72 @@ packs\pack2\B.java:14: error: m1() has protected access in A
 | from non-child class of outside package       |  yes   |  no                                       |  no     |  no     |
 
 `privat < default < protected < public` is the ascending order of restriction.
+
+## interface Declaration and implementation
+
+interface is defined by using `interface` keyword.
+- class is responsible for implementation of `interface`. to implement class use the keyword `implements`.
+- by default all the methods in `interface` are `public` and `abstract`. if we declare it or not all of it are `public` and `abstract`
+
+### important point for implementation of interface in a service provider class
+
+1. The class must declare the method of `interface` as public while implementing it otherwise error.
+2. All the methods of the `interface` must need to be implemented otherwise error.
+3. if we want implement some of the method of the interface than we have to declare the service provider class as `abstract` because it is not giving the implementation for all the methods
+4. we can use the child class of service provider class to implement the remaining methods.
+
+````
+interface Interf{
+    void m1(); // by default these are `public abstract`
+    void m2(); // by default these are `public abstract` if we write or not
+}
+
+public class ServiceProvider implements Interf{
+
+    public void m1() {
+
+    }
+
+
+    public void m2() {
+
+    }
+}
+````
+The above code will work fine. if implement only 1 method than we can also do like this.
+````
+interface Interf{
+    void m1(); // by default these are `public abstract`
+    void m2(); // by default these are `public abstract` if we write or not
+}
+
+abstract public class ServiceProvider implements Interf{
+
+    public void m1() {
+
+    }
+
+}
+````
+and to implement the second method we can use child classes
+````
+interface Interf{
+    void m1(); // by default these are `public abstract`
+    void m2(); // by default these are `public abstract` if we write or not
+}
+
+abstract public class ServiceProvider implements Interf{
+
+    public void m1() {
+        System.out.println("method m1");
+    }
+
+}
+
+class SubServiceProvider extends ServiceProvider{
+    @Override
+    public void m2() {
+        System.out.println("method m2");
+    }
+}
+````
