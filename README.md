@@ -897,3 +897,27 @@ as you can see `null` can be both `String` and `Object` in such case where we ha
 than `child` method will be get called. here `String` is the child of `Object`.
 
 if in case `child` is not present `parent` method will be executed.
+
+## Method Overloading case study - 3
+
+In this case if we have same level child from let say `Object`. than while overloading a `null` value will give error.
+because compiler is confuse. `Ambigous method call`
+
+![same level childs](./pictures/same_level_childs.PNG)
+
+````
+class Testtttt {
+    public void m1(String s){
+        System.out.println("String version");
+    }
+    public void m1(StringBuffer sb){
+        System.out.println("StringBuffer version");
+    }
+    public static void main(String[] args){
+        Testtttt t = new Testtttt();
+        t.m1("Aamir"); // String version
+        t.m1(new StringBuffer("Aamir")); // StringBuffer version
+//        t.m1(null); // will give compiler error because String and StringBuffer are same level child from Object
+    }
+}
+````
