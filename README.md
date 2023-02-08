@@ -860,10 +860,40 @@ float-arg method
 int-arg method
 float-arg method
 ````
-so if you notice the one with character `t.m1('a')` is promoted to int which is the next higher type. This is called automatic
-promotion. here is chart for it.
+so if you notice the one with character `t.m1('a')` is promoted to int which is the next higher type. This is called `automatic
+promotion`. here is chart for it.
 
 ![automatio promotion](./pictures/automatic_promotion_chart.PNG)
 
 so the compiler will not give error immediately. first it will promote the argument to the next level. if there is some type it will use that.
 
+## Method Overloading case study - 2
+
+in case we have overloaded methods of `Object` and `String`
+````
+class Testttt {
+    public void m1(Object o){
+        System.out.println("object version");
+    }
+    public void m1(String s){
+        System.out.println("String version");
+    }
+    public static void main(String[] args){
+        Testttt t = new Testttt();
+        t.m1(new Object()); // Object version will call
+        t.m1("Aamir");      // String version
+        t.m1(null);         // null is both String and Object but String will be called
+    }
+}
+````
+output is
+````
+$ java Testttt
+object version
+String version
+String version
+````
+as you can see `null` can be both `String` and `Object` in such case where we have overloaded methods of both `parent` and `child`
+than `child` method will be get called. here `String` is the child of `Object`.
+
+if in case `child` is not present `parent` method will be executed.
