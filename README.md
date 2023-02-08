@@ -921,3 +921,31 @@ class Testtttt {
     }
 }
 ````
+## Method Overloading case study - 4
+
+- `m1(int... i)` here `int...` means we can take any number of int values or zero int values. This concept is in new java 1.8
+- so here if we have conflict between `General method` and `Var-arg method` the `General method` will win. for all other situation `Var-arg` methods will execute.
+
+![Var-arg](./pictures/general_variable-arg_methods.PNG)
+````
+class Testttttt {
+    public void m1(int i){
+        System.out.println("General method");
+    }
+    public void m1(int... i){
+        System.out.println("Var-arg method");
+    }
+    public static void main(String[] args){
+        Testttttt t = new Testttttt();
+        t.m1(); // Var-arg method
+        t.m1(2,3); // Var-arg method
+        t.m1(10); // General method
+    }
+}
+````
+output is 
+````
+Var-arg method
+Var-arg method
+General method
+````
