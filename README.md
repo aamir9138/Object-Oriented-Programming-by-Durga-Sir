@@ -739,3 +739,22 @@ it is supported. it means if from one class many classes inherit separately
 `Class B extends A`
 `Class C extend A`
 `Class D extends A`
+
+## Multiple Inheritance
+
+Java provide supports for `multiple inheritance` only in `interface` but not classes. because interfaces are not implementing the classes.
+so 
+````
+interface P1{}
+interface P2{}
+interface C extends P1,P2
+````
+is perfectly fine.
+
+- in java 1.8 and onwards we can use `default methods` in interfaces but still multiple inheritance will not make any problem.
+
+if interviewer ask that if every class is the child of `Object` class and the we are extending some classes also. so how is
+multiple inheritance not possible in java.
+
+The answer is that when we have simple class i.e `class A` so it is extending from `Object class`. if we have `class B extends A`
+than it is extending not from `Object` class but from the `Class A` and then class A is extending Object class.
