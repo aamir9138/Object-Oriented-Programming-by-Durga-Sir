@@ -831,3 +831,39 @@ here `Test t` is the `reference type`.
 
 in overloading `method resolution` is always taken care by the compiler based on `reference type` but not based on `runtime object`.
 that is why `overloading` is also known as `compile time polymorphism` or `static polymorphism` or `early binding`
+
+## Method Overloading case study - 1
+
+````
+class Testtt {
+    public void m1(int i){
+        System.out.println("int-arg method");
+    }
+    public void m1(float f){
+        System.out.println("float-arg method");
+    }
+    public static void main(String[] args){
+        Testtt t = new Testtt();
+        t.m1(10);
+        t.m1(10.5f);
+        t.m1('a'); // automatic promotion to int
+        t.m1(10l); // automatic promotion to float
+        t.m1(10.5); // it is double and we don't have and can't be promoted so compiler error
+    }
+}
+````
+the output will be
+````
+$ java Testtt
+int-arg method
+float-arg method
+int-arg method
+float-arg method
+````
+so if you notice the one with character `t.m1('a')` is promoted to int which is the next higher type. This is called automatic
+promotion. here is chart for it.
+
+![automatio promotion](./pictures/automatic_promotion_chart.PNG)
+
+so the compiler will not give error immediately. first it will promote the argument to the next level. if there is some type it will use that.
+
