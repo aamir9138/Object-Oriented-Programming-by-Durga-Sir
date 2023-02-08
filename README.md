@@ -769,3 +769,40 @@ class A extends B
 class B extends A
 ````
 this also not possible
+
+## Method Signature
+
+what is `method signature` ? 
+method signature contains the following
+1. Method Name
+2. Method arguments types
+3. Order of arguments must be same
+4. the name of arguments can be different but type must be same
+
+if we have a method let say
+`public int m1(int i, float f)`
+
+its method signature is `m1(int, float)`
+
+- in C++ return type is also the part of method signature but in java return type is not.
+
+compiler is using `method signature` to resolve `method calls`.
+
+compiler will maintain a `Method Table` for every class.
+if a method signature is not there in a method table for a class and we are trying to call it.
+it will give compile time error. suppose we are calling a method with a double value and it is not
+present the error message will be.
+
+`cannot find symbol, method m3(double)`
+
+### important
+
+- 2 methods with the same signature is not acceptable in a class.
+````
+class Test{
+public void m1(int i){}   // signature m1(int)
+public int m1(int j){return 10}  // signature m1(int)
+}
+````
+the error we get by compiler is.
+`method m1 is already defined`
