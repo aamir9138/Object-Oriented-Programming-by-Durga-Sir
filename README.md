@@ -1096,3 +1096,106 @@ At runtime JVM is always going to check which is the runtime Object created. so 
 means that in `overridding` method resolution takes care by the JVM. based on `runtime object` which is on the right `new Child()` and `new Parent()`.
 
 That is why overriding is `runtime polymorphism`, `dynamic polymorphism` or `late binding`
+
+## Method Overriding Rules Part - 1
+
+it is not an easy process we have to take care of many things.
+
+1. until java 1.4 version for `overriding methods` the signature i.e `method name`, `argument type` and `return type` must be same.
+2. from java version 1.5 for `overriding methods` the signature i.e `method name`, `argument type` must be same and for the `return type` `co-variant`
+is possible. `co-variant` means `return type` of the `child method` possibly can be the `child` of the `parent method` return type.
+
+in the below example we will see.
+````
+class ParentMethodOverriding {
+    public Object m1(){
+        System.out.println("Parent method return type Object");
+        return null;
+    }
+}
+
+class ChildMethodOverriding extends ParentMethodOverriding{
+    public String m1(){
+        System.out.println("Child method return type String");
+        return null;
+    }
+}
+class MethodOverridingRulesPart1 {
+    public static void main(String [] args) {
+        ParentMethodOverriding p = new ParentMethodOverriding();
+        p.m1(); // Parent method return type Object
+
+        ChildMethodOverriding c = new ChildMethodOverriding();
+        c.m1(); // Child method return type String
+    }
+}
+````
+so in above program the `return type` of parent class method is `Object` and `return type` of child class overriden method
+is `String` which is allowed after java version 1.5.
+
+but if we make it opposite i.e. `parent method return type ---- String` and `child method return type ---- Object`. it 
+will give error
+````
+class ParentMethodOverriding {
+    public String m1(){
+        System.out.println("Parent method return type Object");
+        return null;
+    }
+}
+
+class ChildMethodOverriding extends ParentMethodOverriding{
+    public Object m1(){
+        System.out.println("Child method return type String");
+        return null;
+    }
+}
+class MethodOverridingRulesPart1 {
+    public static void main(String [] args) {
+        ParentMethodOverriding p = new ParentMethodOverriding();
+        p.m1(); 
+
+        ChildMethodOverriding c = new ChildMethodOverriding();
+        c.m1(); 
+    }
+}
+````
+and the error will be
+`'m1()' in 'ChildMethodOverriding' clashes with 'm1()' in 'ParentMethodOverriding'; attempting to use incompatible return type`
+
+### possible not possible
+
+1. (parent method return type) Object ---> (child method return type) String, StringBuffer, Object (possible)
+2. (parent method return type) Number ---> (child method return type) Long, Float, Double, Short, Byte wrapper classes (possible)
+3. (parent method return type) String ---> (child method return type) Object (not possible)
+4. (parent method return type) double ---> (child method return type) int (not possible because this `co-variant` only works with Object not primitive types)
+
+### compiling with lower version
+
+`javac -source 1.4 method_overriding_rules_part1.java`. so with this `co-variant` thing will not work.
+
+also for the primitive type example
+````
+class ParentMethodOverriding {
+    public double m1(){
+        System.out.println("Parent method return type double");
+        return 10.5;
+    }
+}
+
+class ChildMethodOverriding extends ParentMethodOverriding{
+    public int m1(){
+        System.out.println("Child method return type int");
+        return 5;
+    }
+}
+class MethodOverridingRulesPart1 {
+    public static void main(String [] args) {
+        ParentMethodOverriding p = new ParentMethodOverriding();
+        p.m1(); // Parent method return type Object
+
+        ChildMethodOverriding c = new ChildMethodOverriding();
+        c.m1(); // Child method return type String
+    }
+}
+````
+This will give the error `'m1()' in 'ChildMethodOverriding' clashes with 'm1()' in 'ParentMethodOverriding'; attempting to use incompatible return type`
