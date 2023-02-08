@@ -977,3 +977,80 @@ $ java Testtttttt
 int and float argument types
 float and int argument types
 ````
+## Method Overloading case study - 6
+
+The resolution of methods calling is done by compiler which is based on `reference type`. this is important
+point. we will present an example for this.
+
+````
+class Animal{
+
+}
+class Monkey extends Animal{
+
+}
+
+class Testttttttt {
+    public void m1(Animal a){
+        System.out.println("Animal version");
+    }
+    public void m1(Monkey m){
+        System.out.println("Monkey version");
+    }
+    public static void main(String[] args){
+        Testttttttt t = new Testttttttt();
+
+        Animal a = new Animal();
+        t.m1(a); // Animal verion
+
+        Monkey m = new Monkey();
+        t.m1(m); // Monkey version
+    }
+}
+````
+the output will be
+````
+$ java Testttttttt
+Animal version
+Monkey version
+````
+uptill here it is fine, but if use `reference type` of parent i.e `Animal` and create an object of child class
+i.e `Monkey` and then we call `m1()` what will happen??
+
+````
+class Animal{
+
+}
+class Monkey extends Animal{
+
+}
+
+class Testttttttt {
+    public void m1(Animal a){
+        System.out.println("Animal version");
+    }
+    public void m1(Monkey m){
+        System.out.println("Monkey version");
+    }
+    public static void main(String[] args){
+        Testttttttt t = new Testttttttt();
+
+        Animal a = new Animal();
+        t.m1(a); // Animal verion
+
+        Monkey m = new Monkey();
+        t.m1(m); // Monkey version
+
+        Animal a1 = new Monkey();
+        t.m1(a1); // Animal version
+    }
+}
+````
+the ouput will be
+````
+$ java Testttttttt
+Animal version
+Monkey version
+Animal version
+````
+so as you see it depends on the `reference type` not on the `created object`.
