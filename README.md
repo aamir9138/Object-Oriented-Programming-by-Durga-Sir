@@ -758,3 +758,14 @@ multiple inheritance not possible in java.
 
 The answer is that when we have simple class i.e `class A` so it is extending from `Object class`. if we have `class B extends A`
 than it is extending not from `Object` class but from the `Class A` and then class A is extending Object class.
+
+## Cyclic Inheritance
+
+it is not supported in java.
+
+`class A extends A`  --- not possible
+````
+class A extends B
+class B extends A
+````
+this also not possible
