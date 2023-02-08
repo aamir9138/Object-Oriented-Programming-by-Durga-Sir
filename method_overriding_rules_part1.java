@@ -1,14 +1,14 @@
 class ParentMethodOverriding {
-    public double m1(){
-        System.out.println("Parent method return type double");
-        return 10.5;
+    public Object m1(){
+        System.out.println("Parent method return type Object");
+        return null;
     }
 }
 
 class ChildMethodOverriding extends ParentMethodOverriding{
-    public int m1(){
-        System.out.println("Child method return type int");
-        return 5;
+    public String m1(){
+        System.out.println("Child method return type String");
+        return null;
     }
 }
 class MethodOverridingRulesPart1 {

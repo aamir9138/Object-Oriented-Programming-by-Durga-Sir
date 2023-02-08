@@ -1199,3 +1199,95 @@ class MethodOverridingRulesPart1 {
 }
 ````
 This will give the error `'m1()' in 'ChildMethodOverriding' clashes with 'm1()' in 'ParentMethodOverriding'; attempting to use incompatible return type`
+
+## Method overriding rules part - 2
+
+here we will discuss method overriding with other modifiers such as `private`, `final` etc
+
+### for private method return type
+
+as the `private methods` in parent are not visible to the child classes so no need to worry about overriding.
+overriding concept is not applicable to the private members of the parent class. for example
+````
+class PP {
+    private void m1(){
+        
+    }
+}
+
+class CC extends PP {
+    private void m1(){
+        
+    }
+}
+````
+this is perfectly valid but it is not overriding.
+
+### for final method return type
+
+if we declare a method return type in parent as `final` then we cannot override it in childe otherwise we got error.
+
+````
+class PP {
+    public final void m1(){
+
+    }
+}
+
+class CC extends PP {
+    public void m1(){
+
+    }
+}
+````
+we get the below error
+````
+'m1()' cannot override 'm1()' in 'PP'; overridden method is final
+````
+and if we declare the child method return type also `final` still we get the error.
+````
+class PP {
+    public final void m1(){
+
+    }
+}
+
+class CC extends PP {
+    public final void m1(){
+
+    }
+}
+````
+````
+'m1()' cannot override 'm1()' in 'PP'; overridden method is final
+````
+- if parent is `non-final` and child is `final` it is acceptable. it will compile
+````
+class PP {
+    public void m1(){
+
+    }
+}
+
+class CC extends PP {
+    public final void m1(){
+
+    }
+}
+````
+### for abstract method return type
+
+1. if the parent class has a method whose return type is `abstract` than it means it has no implementation. so in child class
+we can use `non-abstract` return type method to implement the method. it is normal
+2. is it possible in parent class `non-abstract` return type method and then we have overrided method in child class
+which is `abstract`. yes it is also possible. then the child of this child mean `subChild` can implement the child method.
+This is used to hide the implementation of `parent` from the `subchild`. This is also possible.
+
+### miscellaneous return types
+
+1. `synchronized` -- to -- `non-synchronized` and `non-synchronized` --  to -- `synchronized` overriding is possible
+2. `native` -- to -- `non-native` and `non-native` --  to -- `native` overriding is possible
+3. `strictfp` -- to -- `non-strictfp` and `non-strictfp` --  to -- `strictfp` overriding is possible
+
+so if you observe only `final` return type modifier we cannot override.
+
