@@ -806,3 +806,28 @@ public int m1(int j){return 10}  // signature m1(int)
 ````
 the error we get by compiler is.
 `method m1 is already defined`
+
+## Overloading Introduction
+
+when methods names are same and arguments are different is called `overloading`.
+In C `method overloading` is not available. so there 2 methods with same name is not possible. in C
+````
+abs(int) // for int data type
+labs(long) // for long data type
+fabs(float) // for float data type
+````
+In java we can use same `abs` method for different argument type.
+````
+abs(int)
+abs(long)
+abs(float)
+````
+code complexity decreases in java.
+
+### important
+
+suppose `Test t = new Test()`
+here `Test t` is the `reference type`.
+
+in overloading `method resolution` is always taken care by the compiler based on `reference type` but not based on `runtime object`.
+that is why `overloading` is also known as `compile time polymorphism` or `static polymorphism` or `early binding`
