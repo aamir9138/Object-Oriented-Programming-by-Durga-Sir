@@ -1054,3 +1054,45 @@ Monkey version
 Animal version
 ````
 so as you see it depends on the `reference type` not on the `created object`.
+
+## Method Overriding
+
+`method overriding` is a process in which the child class `override` the parent class methods. example of `Rabia` and `Katrina`.
+the child can add extra things to the overriden method.
+
+`method overriding` is also called as `runtime polymorphism`, `dynamic polymorphism` or `late binding`.
+we will give an example here.
+
+````
+class Parent{
+    public void property(){
+        System.out.println("cash, land, gold");
+    }
+    public void marry(){
+        System.out.println("Rabia");
+    }
+}
+class Child extends Parent{
+    @Override
+    public void marry() {
+        System.out.println("Katarina");
+    }
+}
+class MethodOverriding {
+    public static void main(String[] arg){
+       Parent p = new Parent();
+       p.marry(); // Rabia
+
+       Child c = new Child();
+       c.marry(); // Katarina
+
+       Parent p1 = new Child();
+       p1.marry(); // Katarina, so here it depends on runtime Object creation, even though reference type is parent
+        // child class overriden method is executed.
+    }
+}
+````
+At runtime JVM is always going to check which is the runtime Object created. so it will give chance to the child class here.
+means that in `overridding` method resolution takes care by the JVM. based on `runtime object` which is on the right `new Child()` and `new Parent()`.
+
+That is why overriding is `runtime polymorphism`, `dynamic polymorphism` or `late binding`
