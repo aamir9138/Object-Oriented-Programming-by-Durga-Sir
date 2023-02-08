@@ -1291,3 +1291,44 @@ This is used to hide the implementation of `parent` from the `subchild`. This is
 
 so if you observe only `final` return type modifier we cannot override.
 
+## Method overriding rule part - 3
+
+- while overriding we cannot reduce the scope of modifier for example from `public` to `protected`.
+- but in overriding we can increase the scope of modifier for example from `protected` to `public` is possible.
+
+in coding example below
+````
+class PPP{
+    public void m1(){
+        
+    }
+}
+ class CCC extends PPP{
+    protected void m1(){
+        
+    }
+ }
+````
+we get this error because while overriding we decreased the scope
+````
+'m1()' in 'CCC' clashes with 'm1()' in 'PPP'; attempting to assign weaker access privileges ('protected'); was 'public'
+````
+and the below example will work perfectly fine because the scope is increased.
+````
+class PPP{
+    protected void m1(){
+        
+    }
+}
+ class CCC extends PPP{
+    public void m1(){
+        
+    }
+ }
+````
+`private<default<protected<public`
+
+1. `public` to `public` allowed
+2. `protected` to `protected` and `public` allowe
+3. `default` to `default`, `protected` and `public` allowed
+4. for private overriding is not applicable
