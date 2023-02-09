@@ -1332,3 +1332,63 @@ class PPP{
 2. `protected` to `protected` and `public` allowe
 3. `default` to `default`, `protected` and `public` allowed
 4. for private overriding is not applicable
+
+## Method Overriding Rules Part - 4
+
+so we have two types of `Exceptions`
+1. checked Exception
+2. unchecked Exception
+
+![checked unchecked exception](./pictures/checked_and_unchecked_exception.PNG)
+
+A checked exception is caught at compile time whereas a runtime or unchecked exception is, as it states, at runtime.
+A checked exception must be handled either by re-throwing or with a try catch block, whereas an unchecked isn't required to be handled.
+
+
+![unchecked exception](./pictures/durga_unchecked_exception.PNG)
+
+`Runtime exception` and its child classes and `Error` and its child classes are `unchecked exceptions`
+
+`RE -- runtime exception`
+`AE -- Arithmatic exception`
+`NPE -- Null Pointer exception`
+`CCE -- Class cached exception`
+`IE -- interrupt exception`
+`SE -- Servlet exception`
+`FNFE -- File not found exception`
+
+so while overriding what we have to do about `Exceptions`? there is a simple rule.
+
+### rule
+
+if child class method throws any `checked exception` compulsory parent class method should throw the same
+`checked exception` or its parent.
+
+for `unchecked exception` we have no rule. we can use anywhere.
+
+````
+1.  P: public void m1() throws Exception
+    C: public void m1()     // valid because child is not throwing any exception
+
+2.  P: public void m1()
+    C: public void m1() throws Exception // invalid. here parent is not throwing checked Exception so compiler give error
+    // so to solve this parent method also throw Exception or its parent i.e. Throwable
+
+3.  P: public void m1() throws Exception  // valid because IOException is child of Exception
+    C: public void m1() throws IOException
+
+4.  P: public void m1() throws IOException // invalid
+    C: public void m1() throws Exception
+
+5.  P: public void m1() throws IOException // valid because these are childs
+    C: public void m1() throws EndOfFileException, FileNotFoundException
+
+6.  P: public void m1() throws IOException // invalid, InterruptException not child of IOException
+    C: public void m1() EndOfFileException, InterruptException
+
+7.  P: public void m1() throws IOException
+    C: public void m1() EOFException, NPE // valid, NPE is unchecked no problem
+
+8.  P: public void m1() throws IOException
+    C: public void m1() AE, NPE // valid, both are unchecked no problem
+````
