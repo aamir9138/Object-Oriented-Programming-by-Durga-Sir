@@ -1687,7 +1687,7 @@ so in general we can write the above program in an equation like this
 
 1. The `C` and `d` must have some kind of relation either parent-child or child-parent to resolve Compile time Type casting error.
 2. The `C` must either same of `A` or child of `A` for compile time error resolution.
-3. The `runtime object d` must be either same as `C` or its parent.
+3. The `runtime object d` must be either same as `C` or derived type of C, otherwise we will get runtime exception saying: ClassCastException
 
 so the above example is perfectly valid type of `variable Type casting` because
 
@@ -1713,3 +1713,48 @@ Exception in thread "main" java.lang.ClassCastException: class java.lang.String 
 a.lang.StringBuffer are in module java.base of loader 'bootstrap')
         at Testi.main(Object_typecasting.java:12)
 ````
+![3 mantras](./pictures/3_mantras_Object_TypeCasting.PNG)
+
+## Internal Things of Object Type Casting
+
+1. if we typecast multiple time the runtime object will remain the same only the reference will change.
+
+![internal type](./pictures/internal_type.PNG)
+
+2. when we are type casting a new Object is not going to be created. only a new reference variable will be created. the object will remains
+the same.
+
+![type_casting](./pictures/Internal_things_object_typecasting.PNG)
+
+to prove this 
+````
+sout(I===n); true
+sout(n===o); true
+sout(o===I); true
+````
+it means it is a same object.
+````
+class Testi{
+    public static void main(String [] args){
+        String I = new String("Durga");
+        Object o = (Object) I;
+        System.out.println(I == o); // True
+    }
+}
+````
+## Different Scenario with Object Type Casting
+
+![type cast scenarios](./pictures/typecast_scenarios.PNG)
+
+![scenario_2](./pictures/scenario_2.PNG)
+
+here in this case as we have overriding so the output will be based on `runtime object` which in this case is `C` so for all
+the 3 the method of `class C` will be called.
+
+now if we change the methods to `static` than it is not `overriding` but `method hiding` so the output will becomes
+
+![static methods with typecasting](./pictures/static_method_typecasting.PNG)
+
+![variable resolution](./pictures/variable_typecasting.PNG)
+
+in the above example for variables we don't have overriding. variable resolution is done by the reference type object on the left.

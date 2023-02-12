@@ -6,10 +6,18 @@
 //    }
 //}
 
+//class Testi{
+//    public static void main(String [] args){
+//        Object o = new String("Durga");
+//        StringBuffer s = (StringBuffer) o;
+//        System.out.println(s);
+//    }
+//}
+
 class Testi{
     public static void main(String [] args){
-        Object o = new String("Durga");
-        StringBuffer s = (StringBuffer) o;
-        System.out.println(s);
+        String I = new String("Durga");
+        Object o = (Object) I;
+        System.out.println(I == o); // True
     }
 }
