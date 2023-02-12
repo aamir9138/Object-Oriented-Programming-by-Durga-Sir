@@ -1648,3 +1648,15 @@ class Testa{
     }
 }
 ````
+## comparison between overloading and overriding
+
+| Propert   | Overloading | Overriding                                                                                                                            |
+|-----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Method Names    | must be same       | must be same                                                                                                                          |
+| Argument Types | must be different (atleast order)        | must be same                                                                                                                          |
+| private/final/static methods    | can be overloaded no restriction       | cannot be overriden                                                                                                                   |
+| return Types | no restriction        | must be same until 1.4 co-variant return type allowed                                                                                 |
+| throws clause    | no restriction       | if child class method throws any checked exception compulsory parent class method should throw the same checked exception or parent   |
+| method resoluton | compiler based on reference type | JVM based on runtime object                                                                                                           |
+| other names    | compile time polymorphism, static polymorphism, early binding     | runtime polymorphism, dynamic polymorphism or late binding                                                                            |
+
