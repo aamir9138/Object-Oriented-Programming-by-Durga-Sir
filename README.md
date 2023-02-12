@@ -1523,3 +1523,76 @@ class Teste{
 | 1. Both parent class and child class methods should be static.              | 1. Both parent class and child class methods should be non-static.     |
 | 2. Method resolution always takes care by compiler based on reference type. | 2. Method resolution always takes care by JVM based on runtime object. |
 | 3. Method hiding is compile time polymorphism or static polymorphism or early binding. | 3. Overriding is runtime polymorphism, dynamic polymorphism, or late binding | 
+
+## Overriding w.r.t var-arg methods
+
+so let say in parent class method we have `var-arg` arguments while in child class we have one int argument like below.
+````
+class PPPPP {
+    public void m1(int... i){
+        System.out.println("parent");
+    }
+}
+
+class CCCCC extends PPPPP{
+    public void m1(int i){
+        System.out.println("child");
+    }
+}
+
+class Testee{
+    public static void main (String [] arg){
+        PPPPP p = new PPPPP();
+        p.m1(10); // parent
+
+        CCCCC c = new CCCCC();
+        c.m1(10); // child
+
+        PPPPP p1 = new CCCCC();
+        p1.m1(10); // parent, based on compiler reference type in overloading
+    }
+}
+````
+so this is not `overriding` but actually it is `overloading` because the argument in both parent and child are not the same. 
+so in overloading we know that the method resolution will be based on the `compile reference type` i.e parent on the left.
+
+output
+````
+$ java Testee                                                                                     
+parent
+child
+parent
+````
+### conclusion
+
+so `var-arg` method cannot be overrided with the simple methods. if we want to override the `var-arg` method in parent. the 
+child methods must also be `var-arg`. like below
+
+````
+// var-arg to var-arg overriding
+class PPPPP {
+    public void m1(int... i){
+        System.out.println("parent");
+    }
+}
+
+class CCCCC extends PPPPP{
+    public void m1(int... i){
+        System.out.println("child");
+    }
+}
+
+class Testee{
+    public static void main (String [] arg){
+        PPPPP p = new PPPPP();
+        p.m1(10); // parent
+
+        CCCCC c = new CCCCC();
+        c.m1(10); // child
+
+        PPPPP p1 = new CCCCC();
+        p1.m1(10); // child, based on the JVM runtime object.
+    }
+}
+````
+
