@@ -1392,3 +1392,134 @@ for `unchecked exception` we have no rule. we can use anywhere.
 8.  P: public void m1() throws IOException
     C: public void m1() AE, NPE // valid, both are unchecked no problem
 ````
+## Method Hiding
+
+### Overriding with respect to Static methods
+
+Static Methods: These methods are class level
+instance Methods: is related to object level.
+
+so if want to override the `class level` methods i.e `static methods` with `object level` instance methods.
+in simple words `static` to `non static` and from `non static` to `static` overriding is not possible. it will
+give errors.
+
+### static to non static
+````
+class PPPP{
+    public static void m1(){
+        
+    }
+}
+ class CCCC extends PPPP{
+    public void m1(){
+        // Error: Instance method 'm1()' in 'CCCC' cannot override static method 'm1()' in 'PPPP'
+        
+    }
+ }
+````
+### non static to static
+````
+class PPPP{
+    public  void m1(){
+
+    }
+}
+class CCCC extends PPPP{
+    public static void m1(){
+        // Error: Static method 'm1()' in 'CCCC' cannot override instance method 'm1()' in 'PPPP'
+
+    }
+}
+````
+### static to static
+
+it will work, but it is not `overriding` it is `method hiding`
+````
+// Method hiding
+class PPPP{
+    public static void m1(){
+
+    }
+}
+class CCCC extends PPPP{
+    public static void m1(){
+       
+
+    }
+}
+````
+### method overriding
+````
+// Method overring
+class PPPP{
+    public  void m1(){
+    }
+}
+class CCCC extends PPPP{
+    public  void m1(){
+    }
+}
+````
+### important
+
+- in `method overriding` means when both the parent and child methods are not `static` method resolution is always taken care by the `runtime JVM object`
+````
+class PPPP{
+    public  void m1(){
+        System.out.println("parent");
+    }
+}
+class CCCC extends PPPP{
+    public  void m1(){
+        System.out.println("child");
+    }
+}
+
+class Teste{
+    public static void main(String [] arg){
+        PPPP p = new PPPP();
+        p.m1(); // parent
+
+        CCCC c = new CCCC();
+        c.m1(); // child
+
+        PPPP p1 = new CCCC();
+        p1.m1(); // child so it depends on the JVM object on the right
+
+    }
+}
+````
+- in `method hiding` means when both the parent and child methods are `static` method resolution is always taken care by the compiler based on `reference type` not on the `runtime object`
+````
+class PPPP{
+    public static void m1(){
+        System.out.println("parent");
+    }
+}
+class CCCC extends PPPP{
+    public static void m1(){
+        System.out.println("child");
+    }
+}
+
+class Teste{
+    public static void main(String [] arg){
+        PPPP p = new PPPP();
+        p.m1(); // parent
+
+        CCCC c = new CCCC();
+        c.m1(); // child
+
+        PPPP p1 = new CCCC();
+        p1.m1(); // parent so it depends on the reference type on the left
+
+    }
+}
+````
+### difference between method hiding and method overriding
+
+| Method Hiding                                                               | Method Overriding                                                      |
+|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
+| 1. Both parent class and child class methods should be static.              | 1. Both parent class and child class methods should be non-static.     |
+| 2. Method resolution always takes care by compiler based on reference type. | 2. Method resolution always takes care by JVM based on runtime object. |
+| 3. Method hiding is compile time polymorphism or static polymorphism or early binding. | 3. Overriding is runtime polymorphism, dynamic polymorphism, or late binding | 
