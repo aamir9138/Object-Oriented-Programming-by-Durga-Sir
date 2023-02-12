@@ -1595,4 +1595,56 @@ class Testee{
     }
 }
 ````
+## Overriding wrt Variable
 
+so overriding only works for `methods` not for `variables`.
+````
+// Overriding wrt instance variables
+class Parente {
+    String s = "Parent";
+}
+class Childe extends Parente{
+    String s = "Child";
+}
+class Testa{
+    public static void main(String [] args){
+        Parente p = new Parente();
+        System.out.println(p.s); // parent
+
+        Childe c = new Childe();
+        System.out.println(c.s); // child
+
+        Parente p1 = new Childe();
+        System.out.println(p1.s); // parent, it is not overriding but variables are always resolved by compile based on reference type.
+
+    }
+}
+````
+it is not overriding but variables are always resolved by compiler based on `reference type`.
+also variable resolution is done by the compiler based on `reference type` either the variable is an `instance variable` or 
+`static variable` the rule is the same.
+
+so lets try with `static` variable the result will be the same.
+
+````
+// Overriding wrt static and instance variable
+class Parente {
+    static String s = "Parent";
+}
+class Childe extends Parente{
+    String s = "Child";
+}
+class Testa{
+    public static void main(String [] args){
+        Parente p = new Parente();
+        System.out.println(p.s); // parent
+
+        Childe c = new Childe();
+        System.out.println(c.s); // child
+
+        Parente p1 = new Childe();
+        System.out.println(p1.s); // parent, it is not overriding but variables are always resolved by compile based on reference type.
+
+    }
+}
+````
