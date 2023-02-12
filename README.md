@@ -1660,3 +1660,56 @@ class Testa{
 | method resoluton | compiler based on reference type | JVM based on runtime object                                                                                                           |
 | other names    | compile time polymorphism, static polymorphism, early binding     | runtime polymorphism, dynamic polymorphism or late binding                                                                            |
 
+## polymorphism summary
+
+polymorphism means many forms. overloading, method hiding and overriding are polymorphisms.
+
+## Three pillars on OOPS
+
+1. Encapsulation
+2. Inheritance
+3. Polymorphism
+
+## 3 Mantras of Object Type Casting
+
+So there are 3 points which we have to check to `Object Type casting`. first we will write a program and then explain that.
+````
+class Testi{
+    public static void main(String [] args){
+        Object o = new String("Durga");
+        String s = (String) o;
+        System.out.println(s); // Durga
+    }
+}
+````
+so in general we can write the above program in an equation like this
+`A b = (C) d`.
+
+1. The `C` and `d` must have some kind of relation either parent-child or child-parent to resolve Compile time Type casting error.
+2. The `C` must either same of `A` or child of `A` for compile time error resolution.
+3. The `runtime object d` must be either same as `C` or its parent.
+
+so the above example is perfectly valid type of `variable Type casting` because
+
+1. in compile time `C = String` and `d which is o = Object`. so String and object has a relation of child and parent
+2. `C=String` and `A = String` so these are same it is fine.
+3. `C=String` and `runtime d i.e o = String` which is same so it is also fine. hence proper type casting.
+
+we see some other examples.
+
+````
+class Testi{
+    public static void main(String [] args){
+        Object o = new String("Durga");
+        StringBuffer s = (StringBuffer) o;
+        System.out.println(s);
+    }
+}
+````
+for compile time it is fine. but for the last and 3 point `A = StringBuffer` and `runtime o = String` which gives an error.
+
+````
+Exception in thread "main" java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.StringBuffer (java.lang.String and jav
+a.lang.StringBuffer are in module java.base of loader 'bootstrap')
+        at Testi.main(Object_typecasting.java:12)
+````
